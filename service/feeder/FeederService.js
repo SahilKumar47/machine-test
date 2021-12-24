@@ -15,7 +15,7 @@ module.exports = {
         let data = compare(sqliteResponseData, pgResponseData);
         let endTime = performance.now();
         let performanceTime = (endTime - startTime).toPrecision(3);
-        data["performaceTime"] = `${performanceTime} ms`;
+        data["performaceTime"] = `${performanceTime}`;
         resolve(data);
       } catch (error) {
         weblogger.error(error);

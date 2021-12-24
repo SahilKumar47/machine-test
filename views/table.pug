@@ -1,0 +1,87 @@
+doctype html
+html(lang='en')
+  head
+    title Table V04
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    // ===============================================================================================
+    // ===============================================================================================
+    link(rel='stylesheet' type='text/css' href='../../vendor/bootstrap/css/bootstrap.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet' type='text/css' href='../../fonts/font-awesome-4.7.0/css/font-awesome.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet' type='text/css' href='../../vendor/animate/animate.css')
+    // ===============================================================================================
+    link(rel='stylesheet' type='text/css' href='../../vendor/select2/select2.min.css')
+    // ===============================================================================================
+    link(rel='stylesheet' type='text/css' href='../../vendor/perfect-scrollbar/perfect-scrollbar.css')
+    // ===============================================================================================
+    link(rel='stylesheet' type='text/css' href='../../css/util.css')
+    link(rel='stylesheet' type='text/css' href='../../css/main.css')
+    link(href='../../css/style.css' rel='stylesheet')
+    // ===============================================================================================
+body
+  include navbar
+  include section
+  div
+    .wrapper
+    .limiter
+      .container-table100
+        .wrap-table100
+          .table100.ver3.m-b-110
+            .table100-head
+              table
+                thead
+                  tr.row100.head
+                    th.cell100.column1 Insertion (#{data.insert.length})
+                    th.cell100.column2 Deletions (#{data.delete.length})
+                    th.cell100.column3 Updations (#{data.update.length})
+            .table100-body.js-pscroll
+              table
+                tbody
+                - var n = Math.max(data.update.length,data.insert.length,data.delete.length);
+                - var val = -1;
+                while ++val < n
+                  tr.row100.body
+                    if data.insert[val]
+                         td.cell100.column1 #{data.insert[val]}
+                    else 
+                        td.cell100.column1 -
+                    if data.delete[val]
+                         td.cell100.column2 #{data.delete[val]}
+                    else 
+                        td.cell100.column2 -
+                    if data.update[val]
+                         td.cell100.column3 #{data.update[val]}
+                    else 
+                        td.cell100.column3 -
+    
+    
+    // ===============================================================================================
+    script(src='../../vendor/jquery/jquery-3.2.1.min.js')
+    // ===============================================================================================
+    script(src='../../vendor/bootstrap/js/popper.js')
+    script(src='../../vendor/bootstrap/js/bootstrap.min.js')
+    // ===============================================================================================
+    script(src='../../vendor/select2/select2.min.js')
+    // ===============================================================================================
+    script(src='../../vendor/perfect-scrollbar/perfect-scrollbar.min.js')
+    script.
+      $(".js-pscroll").each(function () {
+      var ps = new PerfectScrollbar(this);
+      $(window).on("resize", function () {
+      ps.update();
+      });
+      });
+    script.
+        var value = $('.value').text();
+        $({numberValue: 0}).animate({numberValue: value}, {
+            duration: 1100,
+            easing: 'linear',
+            progress: function() {
+                $('.value').text(Math.ceil(this.numberValue*100)/100);
+            }
+        });
+    
+    // ===============================================================================================
+    script(src='../../js/main.js')
